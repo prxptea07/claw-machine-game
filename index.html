@@ -8,18 +8,27 @@
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
 <body>
-  <h1 class="title">🎰 CLAW MASTER 3000 🎮</h1>
+  <h1 class="title">🧸 CLAW MASTER 3000 🎮</h1>
+  <div class="score-inventory">
+    <div id="score">Score: 0</div>
+    <div id="inventory">Inventory: None</div>
+  </div>
   <div class="game-container">
     <div class="claw-track">
       <div class="claw-arm" id="claw"></div>
     </div>
     <div class="prize-area">
-      <img src="assets/prize1.png" class="prize" style="left: 40px;" />
-      <img src="assets/prize2.png" class="prize" style="left: 120px;" />
-      <img src="assets/prize3.png" class="prize" style="left: 200px;" />
+      <img src="assets/plush1.png" class="prize" style="left: 40px;" data-name="Bunny" />
+      <img src="assets/plush2.png" class="prize" style="left: 120px;" data-name="Bear" />
+      <img src="assets/plush3.png" class="prize" style="left: 200px;" data-name="Duck" />
     </div>
   </div>
-  <button onclick="dropClaw()" class="grab-button">GRAB</button>
+  <div class="controls">
+    <button onclick="moveClaw('left')">⬅️</button>
+    <button onclick="dropClaw()">🕹️ GRAB</button>
+    <button onclick="moveClaw('right')">➡️</button>
+  </div>
+  <audio id="grab-sound" src="assets/grab.wav" preload="auto"></audio>
   <script src="script.js"></script>
 </body>
 </html>

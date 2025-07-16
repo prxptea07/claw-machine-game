@@ -6,15 +6,22 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
-  height: 100vh;
   padding-top: 20px;
 }
 
 .title {
   text-shadow: 2px 2px #ff00cc;
   font-size: 18px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.score-inventory {
+  display: flex;
+  justify-content: space-between;
+  width: 320px;
+  margin-bottom: 10px;
+  font-size: 10px;
 }
 
 .game-container {
@@ -42,7 +49,7 @@ body {
   position: absolute;
   top: 0;
   left: 130px;
-  transition: top 1s;
+  transition: left 0.4s, top 1s;
   z-index: 2;
   border-radius: 4px;
 }
@@ -67,19 +74,20 @@ body {
   to { transform: rotate(5deg); }
 }
 
-.grab-button {
-  margin-top: 20px;
-  padding: 12px 24px;
-  font-size: 16px;
+.controls {
+  margin-top: 15px;
+  display: flex;
+  gap: 10px;
+}
+
+button {
+  padding: 10px;
   background: #ff00cc;
   color: #fff;
   border: none;
   border-radius: 8px;
   box-shadow: 0 0 10px #ff00cc;
   cursor: pointer;
-  transition: background 0.3s;
-}
-
-.grab-button:hover {
-  background: #cc0099;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 10px;
 }
