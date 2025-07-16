@@ -12,25 +12,41 @@ function moveClaw(direction) {
 }
 
 function dropClaw() {
-  const claw = document.getElementById('claw');
-  const grabSound = document.getElementById('grab-sound');
-  claw.style.top = '400px';
+  const claw = document.getElementById("claw");
+let clawPosition = 1; // start at middle
+const clawX = [60, 160, 260]; // left/mid/right above columns
+
+function moveClaw(direction) {
+  if (direction === "left" && clawPosition > 0) {
+    clawPosition--;
+  } else if (direction === "right" && clawPosition < 2) {
+    clawPosition++;
+  }
+  claw.style.left = clawX[clawPosition] + "px";
+}
+
+function dropClaw() {
+  const grabSound = document.getElementById("grab-sound");
   grabSound.play();
 
+  claw.style.top = "200px"; // drop
   setTimeout(() => {
-    claw.style.top = '0px';
-    const prizes = document.querySelectorAll('.prize');
-    prizes.forEach(prize => {
-      const prizeLeft = parseInt(prize.style.left);
-      if (Math.abs(prizeLeft - position) < 30 && Math.random() > 0.3) {
-        const name = prize.getAttribute('data-name');
-        if (!inventory.includes(name)) {
-          inventory.push(name);
-          score += 10;
-          prize.remove();
-        }
+    claw.style.top = "60px"; // reset
+
+    const prizes = document.querySelectorAll(".prize");
+    const targetLeft = clawX[clawPosition];
+
+    prizes.forEach((prize) => {
+      const prizeLeft = prize.offsetLeft;
+      if (Math.abs(prizeLeft - targetLeft) < 40) {
+        document.getElementById("inventory").innerText = "Inventory: " + prize.dataset.name;
+        document.getElementById("score").innerText = "Score: 1";
+        prize.remove();
       }
     });
+  }, 1000);
+}
+
     document.getElementById('score').innerText = "Score: " + score;
     document.getElementById('inventory').innerText = "Inventory: " + (inventory.length ? inventory.join(', ') : "None");
   }, 1000);
